@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Header></Header>
+    <PostList></PostList>
   </div>
 </template>
 
 <script>
+
+import Header from './components/header.vue'
+import PostList from './components/postList.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header,
+    PostList
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  * { padding: 0; margin: 0; box-sizing: border-box; }
+  *::after{ box-sizing: border-box; }
+  *::before{ box-sizing: border-box; }
+  ul,ol,dl{ list-style:none; }
+  a{ color: inherit; }
+  input { background-clip: padding-box; }
+
 </style>
