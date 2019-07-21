@@ -24,7 +24,8 @@ export default {
   *::after{ box-sizing: border-box; }
   *::before{ box-sizing: border-box; }
   ul,ol,dl{ list-style:none; }
-  a{ color: inherit; }
+  a{ color: inherit;  text-decoration: none;}
   input { background-clip: padding-box; }
+  body {background-color: #e1e1e1}
 
 </style>

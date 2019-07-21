@@ -25,6 +25,25 @@
     min-height: 50px;
   }
   img {
+    margin-top: 8px;
+    margin-left: 70px;
     max-width : 120px;
   }
+  ul {
+    float: right;
+    margin-top: 15px;
+    margin-right: 80px;
+  }
+  ul li {
+    color: #cccccc;
+    font-size: 13px;
+    display: inline-block;
+    margin-left: 27px;
+  }
+
+  ul li a{
+    text-decoration: none;
+  }
+
+
 </style>
