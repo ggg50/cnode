@@ -17,7 +17,16 @@
         <span :class="{goodTab: list.good, topTab: list.top, askAndShare: !list.top && !list.good}">
           {{list | tabType}}
         </span>
-        <a href="#" class="title">{{list.title}}</a>
+        <router-link :to="{
+          name: 'article_content',
+          params: {
+            id: list.id,
+            name: list.author.loginname
+          }
+        }">
+          <a href="#" class="title">{{list.title}}</a>
+        </router-link>
+
         <span class="lastReply">{{list.last_reply_at | getLastReply}}</span>
       </li>
     </ul>

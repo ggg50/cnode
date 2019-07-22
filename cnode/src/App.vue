@@ -2,7 +2,8 @@
   <div id="app">
     <Header></Header>
     <div class="main">
-      <Article></Article>
+      <router-view name="main"></router-view>
+      <router-view name="slidebar"></router-view>
     </div>
   </div>
 </template>
@@ -11,14 +12,12 @@
 
 import Header from "./components/header.vue";
 import PostList from "./components/postList.vue";
-import Article from "./components/article.vue";
 
 export default {
   name: 'App',
   components: {
     Header,
-    PostList,
-    Article
+    PostList
   }
 }
 </script>
