@@ -2,8 +2,11 @@
   <div id="app">
     <Header></Header>
     <div class="main">
+      <router-view name="userInfo"></router-view>
+
+      <router-view name="slideBar"></router-view>
       <router-view name="main"></router-view>
-      <router-view name="slidebar"></router-view>
+
     </div>
   </div>
 </template>

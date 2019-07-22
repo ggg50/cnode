@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="title">
       <ul>
-        <li>• 发布于 {{articleData.create_at | getLastReply}}</li>
+        <li>• 发布于 {{articleData.create_at | formatDate}}</li>
         <li>• 作者 {{articleData.author.loginname}}</li>
         <li>• {{articleData.visit_count}} 次浏览</li>
         <li>• 来自 {{articleData | tabType}}</li>
@@ -19,7 +19,7 @@
       <div v-for="(reply, index) in articleData.replies">
         <img :src="reply.author.avatar_url" alt="">
         <span>{{reply.author.loginname}}</span>
-        <span>{{index + 1}}•{{reply.create_at | getLastReply}}</span>
+        <span>{{index + 1}}•{{reply.create_at | formatDate}}</span>
         <div class="topic_content" v-html="contentFilter(reply.content)">
         </div>
       </div>

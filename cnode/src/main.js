@@ -15,7 +15,7 @@ new Vue({
 })
 
 
-Vue.filter("getLastReply", (str) => {
+Vue.filter("formatDate", (str) => {
   if(!str) return ""
   let date = new Date(str)
   let time = new Date().getTime() - date.getTime();

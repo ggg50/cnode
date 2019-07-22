@@ -27,15 +27,16 @@
           <a href="#" class="title">{{list.title}}</a>
         </router-link>
 
-        <span class="lastReply">{{list.last_reply_at | getLastReply}}</span>
+        <span class="lastReply">{{list.last_reply_at | formatDate}}</span>
       </li>
     </ul>
+    <Pagination></Pagination>
   </div>
 </template>
 
 <script>
 
-
+import Pagination from "./pagination.vue";
 
 export default {
   name: "PostList",
@@ -47,9 +48,12 @@ export default {
   methods: {
     getData(){
       this.$http.get("https://cnodejs.org/api/v1/topics", {page:1, limit: 20})
-      .then(res=> {this.postData=res.data.data; console.log(this.postData)})
+      .then(res=> {this.postData=res.data.data})
       .catch(error=> alert(error))
     }
+  },
+  components: {
+    Pagination
   },
 
   beforeMount() {
