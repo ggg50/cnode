@@ -39,7 +39,7 @@ export default {
   methods: {
     getData(){
       console.log(222);
-      this.$http.get("https://cnodejs.org/api/v1/topic/5bd4772a14e994202cd5bdb7")
+      this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
       .then(res=> {this.articleData=res.data.data;})
       .catch(error=> alert(error))
     },
