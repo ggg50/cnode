@@ -1,20 +1,24 @@
 <template>
   <div id="app">
     <Header></Header>
-    <PostList></PostList>
+    <div class="main">
+      <Article></Article>
+    </div>
   </div>
 </template>
 
 <script>
 
-import Header from './components/header.vue'
-import PostList from './components/postList.vue'
+import Header from "./components/header.vue";
+import PostList from "./components/postList.vue";
+import Article from "./components/article.vue";
 
 export default {
   name: 'App',
   components: {
     Header,
-    PostList
+    PostList,
+    Article
   }
 }
 </script>
