@@ -1,8 +1,8 @@
 <template>
-  <div class="paginationWrapper">
+  <div class="paginationWrapper clearfix">
     <button @click="changeBtn('首页')">首页</button>
     <button @click="changeBtn('上一页')">上一页</button>
-    <button v-if="jduge">......</button>
+    <button v-if="jduge">...</button>
     <button v-for="pageNumber in pages" @click="changeBtn(pageNumber)" :class="[{currentPage: pageNumber === currentPage}, 'pageBtn']">{{pageNumber}}</button>
     <button @click="changeBtn('下一页')">下一页</button>
   </div>
@@ -15,7 +15,7 @@ export default {
   name: "Pagination",
   data() {
     return {
-      pages: [1, 2, 3, 4, 5, "......"],
+      pages: [1, 2, 3, 4, 5, "..."],
       currentPage: 1,
       jduge: false
     }
@@ -25,8 +25,9 @@ export default {
 
       if(typeof pageContent !== "number") {
         if(pageContent === "首页") {
-          this.pages = [1,2,3,4,5,'......'];
+          this.pages = [1,2,3,4,5,'...'];
           this.changeBtn(1);
+          return;
         } else if (pageContent === "上一页"){
           $("button.currentPage").prev().click();
           return;
@@ -53,6 +54,8 @@ export default {
           this.pages.splice(5, 1);
         }
       }
+      this.$emit("handleList", this.currentPage);
+
     }
   }
 
@@ -61,5 +64,44 @@ export default {
 </script>
 
 <style scoped>
+
+.paginationWrapper {
+  margin: 20px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+button {
+  line-height: 30px;
+  padding: 0 15px;
+  background-color: #ffffff;
+  float: left;
+  border-left: none;
+  font-size: 16px;
+  color: #798061;
+}
+
+button:hover {
+  background-color: #f5f5f5;
+}
+
+
+button:first-child {
+  border-left: 1px solid #cfcfcf;
+  border-radius: 3px 0 0 3px;
+}
+
+button:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+button.currentPage {
+  color: #8eba39;
+}
 
 </style>

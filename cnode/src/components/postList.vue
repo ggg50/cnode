@@ -30,7 +30,7 @@
         <span class="lastReply">{{list.last_reply_at | formatDate}}</span>
       </li>
     </ul>
-    <Pagination></Pagination>
+    <Pagination @handleList="renderList"></Pagination>
   </div>
 </template>
 
@@ -42,14 +42,24 @@ export default {
   name: "PostList",
   data() {return {
     isLoading: false,
+    postPage: 1,
     postData: []
   }},
 
   methods: {
     getData(){
-      this.$http.get("https://cnodejs.org/api/v1/topics", {page:1, limit: 20})
-      .then(res=> {this.postData=res.data.data})
+      this.$http.get("https://cnodejs.org/api/v1/topics", {
+        params:{
+          page: this.postPage,
+          limit: 20
+        }
+      })
+      .then(res=> {this.postData=res.data.data;})
       .catch(error=> alert(error))
+    },
+    renderList(value){
+      this.postPage = value;
+      this.getData();
     }
   },
   components: {
@@ -64,7 +74,6 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 .wrapper {

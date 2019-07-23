@@ -35,7 +35,7 @@
           <div class="replyAuthor">
             <img class="avatar" :src="reply.author.avatar_url" alt="">
             <span>{{reply.author.loginname}}</span>
-            <span>{{index + 1}}•{{reply.create_at | formatDate}}</span>
+            <span>{{index + 1}}楼•{{reply.create_at | formatDate}}</span>
           </div>
           <div class="replyContent" v-html="contentFilter(reply.content)">
           </div>

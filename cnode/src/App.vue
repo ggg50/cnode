@@ -31,6 +31,8 @@ export default {
   a{ color: inherit;  text-decoration: none;}
   input { background-clip: padding-box; }
   body {background-color: #e1e1e1}
+  button:focus {outline: none;}
+  button:active {border: 1px solid #cfcfcf}
 
   img.avatar {
     width: 30px;
