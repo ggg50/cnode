@@ -10,7 +10,7 @@
     </ul>
     <ul class="listWrapper">
       <li v-for="list in postData">
-        <img :src="list.author.avatar_url" alt="">
+        <img class="avatar" :src="list.author.avatar_url" alt="avatar">
         <div class="stateWrapper">
           <span class="replyCount">{{list.reply_count}}</span>/<span >{{list.visit_count}}</span>
         </div>
@@ -119,12 +119,7 @@ div ul.listWrapper li:hover {
 }
 
 
-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 3px;
-  vertical-align: middle;
-}
+
 
 .stateWrapper {
   display: inline-block;
@@ -137,22 +132,6 @@ img {
 .stateWrapper .replyCount {
   color: #9e78c0;
   font-size: 14px;
-}
-
-.goodTab , .topTab {
-  padding: 2px 4px;
-  background: #80bd01;
-  color: #fff;
-  font-size: 12px;
-  border-radius: 3px;
-}
-
-.askAndShare {
-  padding: 2px 4px;
-  font-size: 12px;
-  border-radius: 3px;
-  background: #e5e5e5;
-  color: #999;
 }
 
 .title {
@@ -176,6 +155,31 @@ img {
   color: #778087;
   font-size: 11px;
 }
+
+
+
+
+
+
+
+
+
+.goodTab , .topTab {
+  padding: 2px 4px;
+  background: #80bd01;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.askAndShare {
+  padding: 2px 4px;
+  font-size: 12px;
+  border-radius: 3px;
+  background: #e5e5e5;
+  color: #999;
+}
+
 
 
 
