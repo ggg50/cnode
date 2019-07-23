@@ -33,7 +33,12 @@
         </div>
         <div class="replyList" v-for="(reply, index) in articleData.replies">
           <div class="replyAuthor">
-            <img class="avatar" :src="reply.author.avatar_url" alt="">
+            <router-link :to="{
+              name: 'userInfo',
+              params: reply.author.loginname
+              }">
+              <img class="avatar" :src="reply.author.avatar_url" alt="">
+            </router-link>
             <span>{{reply.author.loginname}}</span>
             <span>{{index + 1}}楼•{{reply.create_at | formatDate}}</span>
           </div>
@@ -73,9 +78,18 @@ export default {
       return str.replace(/markdown-text/, "markdown-body");
     }
   },
+
+  watch: {
+    $route(to, from) {
+      this.getArticleData();
+    }
+  },
+
   beforeMount() {
     this.getArticleData();
-  }
+  },
+
+
 }
 
 

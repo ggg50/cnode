@@ -15,9 +15,17 @@
     <div class="recentTopics">
       <div class="topbar">作者最近主题</div>
       <ul>
-        <li v-for="topic in topicLimitBy5">
-          {{topic.title}}
-        </li>
+          <li v-for="topic in topicLimitBy5">
+            <router-link :to="{
+              name: 'articleContent',
+              params: {
+                id: topic.id,
+                name: topic.author.loginname
+              }
+            }">
+            {{topic.title}}
+            </router-link>
+          </li>
       </ul>
     </div>
     <div class="recentReplies">

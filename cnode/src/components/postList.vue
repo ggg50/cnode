@@ -10,7 +10,14 @@
     </ul>
     <ul class="listWrapper">
       <li v-for="list in postData">
-        <img class="avatar" :src="list.author.avatar_url" alt="avatar">
+        <router-link :to="{
+          name: 'userInfo',
+          params: {
+            name: list.author.loginname
+          }
+          }">
+          <img class="avatar" :src="list.author.avatar_url" alt="avatar">
+        </router-link>
         <div class="stateWrapper">
           <span class="replyCount">{{list.reply_count}}</span>/<span >{{list.visit_count}}</span>
         </div>
