@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Header from "../components/header.vue";
 import PostList from "../components/postList.vue";
 import Article from "../components/article.vue";
 import SlideBar from "../components/slideBar.vue";
@@ -18,12 +17,18 @@ export default new Router({
       }
     },
     {
-      name: "article_content",
+      name: "articleContent",
       path: "/topic/:id&author=:name",
       components: {
         main: Article,
-        slideBar: SlideBar,
-        userInfo: UserInfo
+        slideBar: SlideBar
+      }
+    },
+    {
+      name:'userInfo',
+      path:'/userinfo/:name',
+      components:{
+        main:UserInfo
       }
     }
   ]

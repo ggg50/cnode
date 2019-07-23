@@ -1,43 +1,48 @@
 <template>
   <div class="wrapper">
-
-    <div class="topicWrapper">
-      <div class="topicHeader">
-        <div class="topicTitle">
-          <span :class="{goodTab: articleData.good, topTab: articleData.top, askAndShare: !articleData.top && !articleData.good}">
-            {{articleData | tabType}}
-          </span>
-          {{articleData.title}}
+    <div class="loading" v-if="isLoading">
+      <img src="../assets/loading.gif" >
+    </div>
+    <div v-else>
+      <div class="topicWrapper">
+        <div class="topicHeader">
+          <div class="topicTitle">
+            <span :class="{goodTab: articleData.good, topTab: articleData.top, askAndShare: !articleData.top && !articleData.good}">
+              {{articleData | tabType}}
+            </span>
+            {{articleData.title}}
+          </div>
+          <ul>
+            <li>• 发布于 {{articleData.create_at | formatDate}}</li>
+            <li>• 作者 {{articleData.author.loginname}}</li>
+            <li>• {{articleData.visit_count}} 次浏览</li>
+            <li>• 来自 {{articleData | tabType}}</li>
+          </ul>
         </div>
-        <ul>
-          <li>• 发布于 {{articleData.create_at | formatDate}}</li>
-          <li>• 作者 {{articleData.author.loginname}}</li>
-          <li>• {{articleData.visit_count}} 次浏览</li>
-          <li>• 来自 {{articleData | tabType}}</li>
-        </ul>
+
+        <div class="topicContent">
+          <div v-html="contentFilter(articleData.content)">
+          </div>
+        </div>
       </div>
 
-      <div class="topicContent">
-        <div v-html="contentFilter(articleData.content)">
+
+      <div class="replyWrapper">
+        <div class="replyCount">
+          {{articleData.replies.length}} 回复
+        </div>
+        <div class="replyList" v-for="(reply, index) in articleData.replies">
+          <div class="replyAuthor">
+            <img class="avatar" :src="reply.author.avatar_url" alt="">
+            <span>{{reply.author.loginname}}</span>
+            <span>{{index + 1}}•{{reply.create_at | formatDate}}</span>
+          </div>
+          <div class="replyContent" v-html="contentFilter(reply.content)">
+          </div>
         </div>
       </div>
     </div>
 
-
-    <div class="replyWrapper">
-      <div class="replyCount">
-        {{articleData.replies.length}} 回复
-      </div>
-      <div class="replyList" v-for="(reply, index) in articleData.replies">
-        <div class="replyAuthor">
-          <img class="avatar" :src="reply.author.avatar_url" alt="">
-          <span>{{reply.author.loginname}}</span>
-          <span>{{index + 1}}•{{reply.create_at | formatDate}}</span>
-        </div>
-        <div class="replyContent" v-html="contentFilter(reply.content)">
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -47,22 +52,29 @@ export default {
   name: "Article",
   data() {
     return {
+      isLoading: true,
       articleData: {}
     }
   },
   methods: {
-    getData(){
-      console.log(222);
+    getArticleData(){
       this.$http.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
-      .then(res=> {this.articleData=res.data.data;})
-      .catch(error=> alert(error))
+        .then(res=>{
+          if(res.data.success == true){
+            this.isLoading = false;
+            this.articleData = res.data.data;
+          }
+        })
+        .catch(function (err) {
+          alert(err)
+        })
     },
     contentFilter(str) {
       return str.replace(/markdown-text/, "markdown-body");
     }
   },
   beforeMount() {
-    this.getData();
+    this.getArticleData();
   }
 }
 
@@ -75,6 +87,8 @@ export default {
 .wrapper {
   margin: 15px 60px;
   min-width: 650px;
+  margin-right: 370px;
+  display:block;
   border-radius: 5px;
   overflow: hidden;
 }

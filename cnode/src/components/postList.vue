@@ -18,7 +18,7 @@
           {{list | tabType}}
         </span>
         <router-link :to="{
-          name: 'article_content',
+          name: 'articleContent',
           params: {
             id: list.id,
             name: list.author.loginname

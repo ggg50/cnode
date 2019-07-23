@@ -2,8 +2,14 @@
   <div class="slidebarWrapper">
     <div class="userInfo">
       <div class="topbar">作者</div>
-      <img :src="userInfo.avatar_url" alt="">
-      <span>{{userInfo.loginname}}</span>
+      <router-link :to="{
+        name:'userInfo',
+        params: userInfo.loginname
+        }">
+        <img :src="userInfo.avatar_url" alt="">
+      </router-link>
+
+      <span class="loginname">{{userInfo.loginname}}</span>
       <span class="score">积分:{{userInfo.score}}</span>
     </div>
     <div class="recentTopics">
@@ -66,5 +72,58 @@ export default {
 </script>
 
 <style scoped>
+.slidebarWrapper {
+  width: 290px;
+  font-size: 14px;
+  float: right;
+  margin-right: 66px;
+}
+
+.userInfo, .recentTopics, .recentReplies {
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.topbar {
+  color: #444;
+  background-color: #f6f6f6;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.userInfo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+  margin: 10px;
+  vertical-align: middle;
+}
+
+.userInfo .loginname {
+  color: #778087;
+  font-size: 16px;
+}
+
+.userInfo .score {
+  display: block;
+  margin: 10px;
+}
+
+
+.recentTopics ul, .recentReplies ul {
+  color: #778087;
+  font-size: 14px;
+  line-height: 30px;
+  margin: 15px 10px 25px 10px;
+}
+
+.recentTopics ul li, .recentReplies ul li {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 
 </style>

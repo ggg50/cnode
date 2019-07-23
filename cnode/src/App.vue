@@ -3,18 +3,16 @@
     <Header></Header>
     <div class="main">
       <!-- <router-view name="userInfo"></router-view> -->
-      <router-view name="main"></router-view>
       <router-view name="slideBar"></router-view>
-
-
+      <router-view name="main"></router-view>
     </div>
   </div>
 </template>
 
 <script>
 
-import Header from "./components/header.vue";
-import PostList from "./components/postList.vue";
+import Header from "./components/header";
+import PostList from "./components/postList";
 
 export default {
   name: 'App',
@@ -40,5 +38,4 @@ export default {
     border-radius: 3px;
     vertical-align: middle;
   }
-
 </style>
